@@ -94,7 +94,7 @@ namespace KingdomHeartsPlugin
 
             CheckNpcTalkingVisibility();
 
-            if (!Visible || !KingdomHeartsPlugin.Ui.Configuration.Enabled)
+            if (!Visible || !FinalFantasy7Plugin.Ui.Configuration.Enabled)
             {
                 return;
             }
@@ -126,10 +126,10 @@ namespace KingdomHeartsPlugin
 
         private unsafe void CheckNpcTalkingVisibility()
         {
-            var actionBarWidget = (AtkUnitBase*)KingdomHeartsPlugin.Gui.GetAddonByName("_ActionBar", 1);
-            var actionCrossWidget = (AtkUnitBase*)KingdomHeartsPlugin.Gui.GetAddonByName("_ActionCross", 1);
+            var actionBarWidget = (AtkUnitBase*)FinalFantasy7Plugin.Gui.GetAddonByName("_ActionBar", 1);
+            var actionCrossWidget = (AtkUnitBase*)FinalFantasy7Plugin.Gui.GetAddonByName("_ActionCross", 1);
 
-            if (actionBarWidget == null || actionCrossWidget == null || !KingdomHeartsPlugin.Ui.Configuration.HideWhenNpcTalking) return;
+            if (actionBarWidget == null || actionCrossWidget == null || !FinalFantasy7Plugin.Ui.Configuration.HideWhenNpcTalking) return;
 
             if (!actionBarWidget->IsVisible && !actionCrossWidget->IsVisible)
                 Visible = false;

@@ -11,7 +11,7 @@ using Dalamud.Plugin.Services;
 
 namespace KingdomHeartsPlugin
 {
-    public sealed class KingdomHeartsPlugin : IDalamudPlugin
+    public sealed class FinalFantasy7Plugin : IDalamudPlugin
     {
         public string Name => "Kingdom Hearts UI Plugin";
 
@@ -20,7 +20,7 @@ namespace KingdomHeartsPlugin
 
         public static string TemplateLocation = "";
 
-        public KingdomHeartsPlugin(
+        public FinalFantasy7Plugin(
             IDalamudPluginInterface pluginInterface,
             IFramework framework,
             ICommandManager commandManager,

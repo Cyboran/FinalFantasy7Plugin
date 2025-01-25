@@ -42,10 +42,10 @@ namespace KingdomHeartsPlugin.UIElements.Experience
     {
         public static void SetAllPortraits()
         {
-            SetPortraitNormal(KingdomHeartsPlugin.Ui.Configuration.PortraitNormalImage);
-            SetPortraitHurt(KingdomHeartsPlugin.Ui.Configuration.PortraitHurtImage);
-            SetPortraitDanger(KingdomHeartsPlugin.Ui.Configuration.PortraitDangerImage);
-            SetPortraitCombat(KingdomHeartsPlugin.Ui.Configuration.PortraitCombatImage);
+            SetPortraitNormal(FinalFantasy7Plugin.Ui.Configuration.PortraitNormalImage);
+            SetPortraitHurt(FinalFantasy7Plugin.Ui.Configuration.PortraitHurtImage);
+            SetPortraitDanger(FinalFantasy7Plugin.Ui.Configuration.PortraitDangerImage);
+            SetPortraitCombat(FinalFantasy7Plugin.Ui.Configuration.PortraitCombatImage);
         }
 
         public static void SetPortraitNormal(string path)
@@ -70,7 +70,7 @@ namespace KingdomHeartsPlugin.UIElements.Experience
         {
             if (path.IsNullOrEmpty() || !File.Exists(path)) 
             {
-                KingdomHeartsPlugin.Pl.Warning($"Could not load image for portrait at: \"{path}\"");
+                FinalFantasy7Plugin.Pl.Warning($"Could not load image for portrait at: \"{path}\"");
                 return "";
             }
 
@@ -79,34 +79,34 @@ namespace KingdomHeartsPlugin.UIElements.Experience
 
         public static void Draw(float healthY)
         {
-            if (KingdomHeartsPlugin.Cs.LocalPlayer == null) return;
+            if (FinalFantasy7Plugin.Cs.LocalPlayer == null) return;
 
             var drawList = ImGui.GetWindowDrawList();
-            var drawPosition = new Vector2(KingdomHeartsPlugin.Ui.Configuration.PortraitX, KingdomHeartsPlugin.Ui.Configuration.PortraitY + healthY * KingdomHeartsPlugin.Ui.Configuration.Scale);
-            var damagedAlpha = KingdomHeartsPlugin.Ui.Configuration.PortraitRedWhenDamaged ? KingdomHeartsPlugin.Ui.HealthFrame.DamagedHealthAlpha : 0;
-            var realDamagedAlpha = KingdomHeartsPlugin.Ui.HealthFrame.DamagedHealthAlpha;
-            var lowHealthAlpha = KingdomHeartsPlugin.Ui.Configuration.PortraitRedWhenDanger ? KingdomHeartsPlugin.Ui.HealthFrame.LowHealthAlpha : 0;
-            var dangerStatus = KingdomHeartsPlugin.Cs.LocalPlayer.CurrentHp <= KingdomHeartsPlugin.Cs.LocalPlayer.MaxHp * (KingdomHeartsPlugin.Ui.Configuration.LowHpPercent / 100f);
-            var portraitDangerAlpha = KingdomHeartsPlugin.Ui.Configuration.PortraitRedWhenDanger && dangerStatus ? 1 : 0;
-            var inCombat = (KingdomHeartsPlugin.Cs.LocalPlayer.StatusFlags & StatusFlags.InCombat) == StatusFlags.InCombat;
+            var drawPosition = new Vector2(FinalFantasy7Plugin.Ui.Configuration.PortraitX, FinalFantasy7Plugin.Ui.Configuration.PortraitY + healthY * FinalFantasy7Plugin.Ui.Configuration.Scale);
+            var damagedAlpha = FinalFantasy7Plugin.Ui.Configuration.PortraitRedWhenDamaged ? FinalFantasy7Plugin.Ui.HealthFrame.DamagedHealthAlpha : 0;
+            var realDamagedAlpha = FinalFantasy7Plugin.Ui.HealthFrame.DamagedHealthAlpha;
+            var lowHealthAlpha = FinalFantasy7Plugin.Ui.Configuration.PortraitRedWhenDanger ? FinalFantasy7Plugin.Ui.HealthFrame.LowHealthAlpha : 0;
+            var dangerStatus = FinalFantasy7Plugin.Cs.LocalPlayer.CurrentHp <= FinalFantasy7Plugin.Cs.LocalPlayer.MaxHp * (FinalFantasy7Plugin.Ui.Configuration.LowHpPercent / 100f);
+            var portraitDangerAlpha = FinalFantasy7Plugin.Ui.Configuration.PortraitRedWhenDanger && dangerStatus ? 1 : 0;
+            var inCombat = (FinalFantasy7Plugin.Cs.LocalPlayer.StatusFlags & StatusFlags.InCombat) == StatusFlags.InCombat;
 
             //ImGuiAdditions.TextShadowedDrawList(drawList,24, $"{KingdomHeartsPlugin.Cs.LocalPlayer.StatusFlags}", ImGui.GetItemRectMin() + new Vector2(0,0), new Vector4(1, 1, 1, 1), new Vector4(0,0,0,1));
 
             if (realDamagedAlpha > 0.595f && PortraitHurt != "")
             {
-                ImageDrawing.DrawImage(drawList, ImageDrawing.GetSharedTexture(PortraitHurt), KingdomHeartsPlugin.Ui.Configuration.PortraitScale, drawPosition, ImGui.GetColorU32(new Vector4(1 - lowHealthAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1)));
+                ImageDrawing.DrawImage(drawList, ImageDrawing.GetSharedTexture(PortraitHurt), FinalFantasy7Plugin.Ui.Configuration.PortraitScale, drawPosition, ImGui.GetColorU32(new Vector4(1 - lowHealthAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1)));
             }
             else if (dangerStatus && PortraitDanger != "")
             {
-                ImageDrawing.DrawImage(drawList, ImageDrawing.GetSharedTexture(PortraitDanger), KingdomHeartsPlugin.Ui.Configuration.PortraitScale, drawPosition, ImGui.GetColorU32(new Vector4(1 - lowHealthAlpha, 1 - portraitDangerAlpha * 0.8f, 1 - portraitDangerAlpha * 0.8f, 1)));
+                ImageDrawing.DrawImage(drawList, ImageDrawing.GetSharedTexture(PortraitDanger), FinalFantasy7Plugin.Ui.Configuration.PortraitScale, drawPosition, ImGui.GetColorU32(new Vector4(1 - lowHealthAlpha, 1 - portraitDangerAlpha * 0.8f, 1 - portraitDangerAlpha * 0.8f, 1)));
             }
             else if (inCombat && PortraitCombat != "")
             {
-                ImageDrawing.DrawImage(drawList, ImageDrawing.GetSharedTexture(PortraitCombat), KingdomHeartsPlugin.Ui.Configuration.PortraitScale, drawPosition, ImGui.GetColorU32(new Vector4(1 - lowHealthAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1)));
+                ImageDrawing.DrawImage(drawList, ImageDrawing.GetSharedTexture(PortraitCombat), FinalFantasy7Plugin.Ui.Configuration.PortraitScale, drawPosition, ImGui.GetColorU32(new Vector4(1 - lowHealthAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1)));
             }
             else if (PortraitNormal != "")
             {
-                ImageDrawing.DrawImage(drawList, ImageDrawing.GetSharedTexture(PortraitNormal), KingdomHeartsPlugin.Ui.Configuration.PortraitScale, drawPosition, ImGui.GetColorU32(new Vector4(1 - lowHealthAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1)));
+                ImageDrawing.DrawImage(drawList, ImageDrawing.GetSharedTexture(PortraitNormal), FinalFantasy7Plugin.Ui.Configuration.PortraitScale, drawPosition, ImGui.GetColorU32(new Vector4(1 - lowHealthAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1 - damagedAlpha - portraitDangerAlpha, 1)));
             }
         }
 

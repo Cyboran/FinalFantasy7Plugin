@@ -16,33 +16,33 @@ namespace KingdomHeartsPlugin.UIElements.LimitBreak
     {
         private ISharedImmediateTexture _gaugeBackgroundTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\LimitGauge\background.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\LimitGauge\background.png"));
         }
         private ISharedImmediateTexture _gaugeForegroundTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\LimitGauge\gauge_colored.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\LimitGauge\gauge_colored.png"));
         }
         private ISharedImmediateTexture _gaugeForegroundColorlessTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\LimitGauge\gauge_white.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\LimitGauge\gauge_white.png"));
         }
         private ISharedImmediateTexture _maxLimitTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\LimitGauge\max.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\LimitGauge\max.png"));
         }
         private ISharedImmediateTexture _limitTextTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\LimitGauge\limit_text.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\LimitGauge\limit_text.png"));
         }
         private ISharedImmediateTexture _orbTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\LimitGauge\orb.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\LimitGauge\orb.png"));
         }
 
         private ISharedImmediateTexture _numbers(int index)
         {
             index = Math.Clamp(index, 0, 5);
-            return ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @$"Textures\LimitGauge\number_{index}.png"));
+            return ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @$"Textures\LimitGauge\number_{index}.png"));
         }
 
         private Orb[] _orbs;
@@ -66,20 +66,20 @@ namespace KingdomHeartsPlugin.UIElements.LimitBreak
         private unsafe bool UpdateLimitBreak()
         {
             //Get Limit Break Bar
-            var LBWidget = (AtkUnitBase*)KingdomHeartsPlugin.Gui.GetAddonByName("_LimitBreak", 1);
+            var LBWidget = (AtkUnitBase*)FinalFantasy7Plugin.Gui.GetAddonByName("_LimitBreak", 1);
             //Get Compressed Aether Bar
-            var CAWidget = (AtkUnitBase*)KingdomHeartsPlugin.Gui.GetAddonByName("HWDAetherGauge", 1);
+            var CAWidget = (AtkUnitBase*)FinalFantasy7Plugin.Gui.GetAddonByName("HWDAetherGauge", 1);
             var foundCaGauge = false;
 
             LimitBreakMaxLevel = 1;
             MaxLimitBarWidth = 128;
 
             // Diadem Compatibility
-            if (CAWidget != null && KingdomHeartsPlugin.Ui.Configuration.LimitGaugeDiadem)
+            if (CAWidget != null && FinalFantasy7Plugin.Ui.Configuration.LimitGaugeDiadem)
             {
                 if (CAWidget->UldManager.NodeListCount == 10)
                 {
-                    if ((CAWidget->UldManager.SearchNodeById(3)->Alpha_2 > 0 && CAWidget->UldManager.SearchNodeById(3)->IsVisible()) || KingdomHeartsPlugin.Ui.Configuration.LimitGaugeAlwaysShow)
+                    if ((CAWidget->UldManager.SearchNodeById(3)->Alpha_2 > 0 && CAWidget->UldManager.SearchNodeById(3)->IsVisible()) || FinalFantasy7Plugin.Ui.Configuration.LimitGaugeAlwaysShow)
                     {
                         var usedAuger = CAWidget->UldManager.SearchNodeById(10)->IsVisible();
                         for (uint i = 0; i < 5; i++)
@@ -103,7 +103,7 @@ namespace KingdomHeartsPlugin.UIElements.LimitBreak
                     if (LBWidget->UldManager.NodeListCount == 6)
                     {
                         if ((LBWidget->UldManager.SearchNodeById(3)->Alpha_2 == 0 || !LBWidget->UldManager.SearchNodeById(3)->IsVisible()) &&
-                            !KingdomHeartsPlugin.Ui.Configuration.LimitGaugeAlwaysShow) return false;
+                            !FinalFantasy7Plugin.Ui.Configuration.LimitGaugeAlwaysShow) return false;
 
                         for (uint i = 0; i < 3; i++)
                         {
@@ -149,7 +149,7 @@ namespace KingdomHeartsPlugin.UIElements.LimitBreak
             // MAX icon animation
             if (_maxAnimScale > 1)
             {
-                _maxAnimScale -= 3 * KingdomHeartsPlugin.UiSpeed;
+                _maxAnimScale -= 3 * FinalFantasy7Plugin.UiSpeed;
                 if (_maxAnimScale <= 1) _maxAnimScale = 1;
             }
 
@@ -164,7 +164,7 @@ namespace KingdomHeartsPlugin.UIElements.LimitBreak
             if (!UpdateLimitBreak()) return;
 
             var drawList = ImGui.GetWindowDrawList();
-            var basePosition = new Vector2(KingdomHeartsPlugin.Ui.Configuration.LimitGaugePositionX, KingdomHeartsPlugin.Ui.Configuration.LimitGaugePositionY);
+            var basePosition = new Vector2(FinalFantasy7Plugin.Ui.Configuration.LimitGaugePositionX, FinalFantasy7Plugin.Ui.Configuration.LimitGaugePositionY);
 
             // BG
             ImageDrawing.DrawImage(drawList, _gaugeBackgroundTexture, basePosition);
@@ -198,7 +198,7 @@ namespace KingdomHeartsPlugin.UIElements.LimitBreak
 
                 float pointy = (float)(Math.Sin(_orbs[i].Angle * Math.PI / 180) * radius);
 
-                _orbs[i].Angle += 225f * KingdomHeartsPlugin.UiSpeed;
+                _orbs[i].Angle += 225f * FinalFantasy7Plugin.UiSpeed;
 
                 if (_orbs[i].Angle >= 360)
                 {
@@ -207,7 +207,7 @@ namespace KingdomHeartsPlugin.UIElements.LimitBreak
 
                 if (_orbs[i].Angle >= -160 && _orbs[i].Alpha < 1)
                 {
-                    _orbs[i].Alpha += 1.5f * KingdomHeartsPlugin.UiSpeed;
+                    _orbs[i].Alpha += 1.5f * FinalFantasy7Plugin.UiSpeed;
                 }
 
                 _orbs[i].Position = new Vector2(pointX - 1, pointy);

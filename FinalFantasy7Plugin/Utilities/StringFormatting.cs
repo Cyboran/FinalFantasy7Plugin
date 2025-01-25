@@ -13,7 +13,7 @@ namespace KingdomHeartsPlugin.Utilities
         {
             if (formatStyle == NumberFormatStyle.NoFormatting) return $"{val}";
 
-            if (formatStyle == NumberFormatStyle.ThousandsSeparator) return val.ToString("N0", KingdomHeartsPlugin.GetCulture());
+            if (formatStyle == NumberFormatStyle.ThousandsSeparator) return val.ToString("N0", FinalFantasy7Plugin.GetCulture());
 
             var stringFormat = formatStyle switch
             {
@@ -24,8 +24,8 @@ namespace KingdomHeartsPlugin.Utilities
 
             return val switch
             {
-                >= 1000000 => $"{(val / 1000000f).ToString(stringFormat, KingdomHeartsPlugin.GetCulture())}M",
-                >= 10000 => $"{(val / 1000f).ToString(stringFormat, KingdomHeartsPlugin.GetCulture())}K",
+                >= 1000000 => $"{(val / 1000000f).ToString(stringFormat, FinalFantasy7Plugin.GetCulture())}M",
+                >= 10000 => $"{(val / 1000f).ToString(stringFormat, FinalFantasy7Plugin.GetCulture())}K",
                 _ => $"{val}"
             };
         }
@@ -33,7 +33,7 @@ namespace KingdomHeartsPlugin.Utilities
         {
             if (formatStyle == NumberFormatStyle.NoFormatting) return $"{val}";
 
-            if (formatStyle == NumberFormatStyle.ThousandsSeparator) return val.ToString("N0", KingdomHeartsPlugin.GetCulture());
+            if (formatStyle == NumberFormatStyle.ThousandsSeparator) return val.ToString("N0", FinalFantasy7Plugin.GetCulture());
 
             var stringFormat = formatStyle switch
             {
@@ -44,8 +44,8 @@ namespace KingdomHeartsPlugin.Utilities
 
             return val switch
             {
-                >= 1000000 => $"{(val / 1000000f).ToString(stringFormat, KingdomHeartsPlugin.GetCulture())}M",
-                >= 10000 => $"{(val / 1000f).ToString(stringFormat, KingdomHeartsPlugin.GetCulture())}K",
+                >= 1000000 => $"{(val / 1000000f).ToString(stringFormat, FinalFantasy7Plugin.GetCulture())}M",
+                >= 10000 => $"{(val / 1000f).ToString(stringFormat, FinalFantasy7Plugin.GetCulture())}K",
                 _ => $"{val}"
             };
         }

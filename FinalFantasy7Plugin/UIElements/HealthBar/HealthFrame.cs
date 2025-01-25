@@ -32,11 +32,11 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
             LowHealthAlphaDirection = 0;
             _bgColor = new Vector3(0.07843f, 0.07843f, 0.0745f);
 
-            HealthRingBg = new Ring(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_value_segment.png"), _bgColor.X, _bgColor.Y, _bgColor.Z);
-            HealthLostRing = new Ring(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_value_segment.png"), 1, 0, 0);
-            RingOutline = new Ring(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_outline_segment.png"));
-            HealthRing = new Ring(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_health_segment.png"));
-            HealthRestoredRing = new Ring(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_health_restored_segment.png"));
+            HealthRingBg = new Ring(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_value_segment.png"), _bgColor.X, _bgColor.Y, _bgColor.Z);
+            HealthLostRing = new Ring(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_value_segment.png"), 1, 0, 0);
+            RingOutline = new Ring(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_outline_segment.png"));
+            HealthRing = new Ring(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_health_segment.png"));
+            HealthRestoredRing = new Ring(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_health_restored_segment.png"));
             _limitGauge = new LimitGauge();
             _resourceBar = new ResourceBar();
             _expBar = new ClassBar();
@@ -44,8 +44,8 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
 
         public unsafe void Draw()
         {
-            var player = KingdomHeartsPlugin.Cs.LocalPlayer;
-            var parameterWidget = (AtkUnitBase*) KingdomHeartsPlugin.Gui.GetAddonByName("_ParameterWidget", 1);
+            var player = FinalFantasy7Plugin.Cs.LocalPlayer;
+            var parameterWidget = (AtkUnitBase*) FinalFantasy7Plugin.Gui.GetAddonByName("_ParameterWidget", 1);
 
             if (parameterWidget != null)
             {
@@ -57,7 +57,7 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
             }
 
             // Do not do or draw anything if player is null or game ui is hidden
-            if (player is null || KingdomHeartsPlugin.Gui.GameUiHidden)
+            if (player is null || FinalFantasy7Plugin.Gui.GameUiHidden)
             {
                 return;
             }
@@ -68,20 +68,20 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
 
             ImGui.Dummy(new Vector2(220, 256));
 
-            if (KingdomHeartsPlugin.Ui.Configuration.HpBarEnabled)
+            if (FinalFantasy7Plugin.Ui.Configuration.HpBarEnabled)
             {
                 UpdateHealth(player);
                 DrawHealth(drawList, player.CurrentHp, player.MaxHp);
             }
 
-            if (KingdomHeartsPlugin.Ui.Configuration.ResourceBarEnabled) _resourceBar?.Draw(player);
-            if (KingdomHeartsPlugin.Ui.Configuration.LimitBarEnabled) _limitGauge?.Draw();
-            _expBar?.Draw(player, HealthY * KingdomHeartsPlugin.Ui.Configuration.HpDamageWobbleIntensity / 100f);
+            if (FinalFantasy7Plugin.Ui.Configuration.ResourceBarEnabled) _resourceBar?.Draw(player);
+            if (FinalFantasy7Plugin.Ui.Configuration.LimitBarEnabled) _limitGauge?.Draw();
+            _expBar?.Draw(player, HealthY * FinalFantasy7Plugin.Ui.Configuration.HpDamageWobbleIntensity / 100f);
 
-            if (KingdomHeartsPlugin.Ui.Configuration.ShowHpVal && KingdomHeartsPlugin.Ui.Configuration.HpBarEnabled)
+            if (FinalFantasy7Plugin.Ui.Configuration.ShowHpVal && FinalFantasy7Plugin.Ui.Configuration.HpBarEnabled)
             {
                 // Draw HP Value
-                var basePosition = ImGui.GetItemRectMin() + new Vector2(KingdomHeartsPlugin.Ui.Configuration.HpValueTextPositionX, KingdomHeartsPlugin.Ui.Configuration.HpValueTextPositionY) * KingdomHeartsPlugin.Ui.Configuration.Scale;
+                var basePosition = ImGui.GetItemRectMin() + new Vector2(FinalFantasy7Plugin.Ui.Configuration.HpValueTextPositionX, FinalFantasy7Plugin.Ui.Configuration.HpValueTextPositionY) * FinalFantasy7Plugin.Ui.Configuration.Scale;
                 /*float hp = KingdomHeartsPlugin.Ui.Configuration.TruncateHp && player.CurrentHp >= 10000
                     ? player.CurrentHp / 1000f
                     : player.CurrentHp;
@@ -90,11 +90,11 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
                     ? player.CurrentHp >= 100000 ? $"{hp:0}K" : $"{hp:0.#}K" : $"{hp}";*/
 
                 ImGuiAdditions.TextShadowedDrawList(drawList,
-                    KingdomHeartsPlugin.Ui.Configuration.HpValueTextSize,
-                    $"{StringFormatting.FormatDigits(player.CurrentHp, (NumberFormatStyle)KingdomHeartsPlugin.Ui.Configuration.HpValueTextStyle)}",
+                    FinalFantasy7Plugin.Ui.Configuration.HpValueTextSize,
+                    $"{StringFormatting.FormatDigits(player.CurrentHp, (NumberFormatStyle)FinalFantasy7Plugin.Ui.Configuration.HpValueTextStyle)}",
                     basePosition,
                     new Vector4(255 / 255f, 255 / 255f, 255 / 255f, 1f),
-                    new Vector4(0 / 255f, 0 / 255f, 0 / 255f, 0.25f), 3, (TextAlignment)KingdomHeartsPlugin.Ui.Configuration.HpValueTextAlignment);
+                    new Vector4(0 / 255f, 0 / 255f, 0 / 255f, 0.25f), 3, (TextAlignment)FinalFantasy7Plugin.Ui.Configuration.HpValueTextAlignment);
             }
         }
         
@@ -140,11 +140,11 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
         {
             if (HealthRestoreTime > 0)
             {
-                HealthRestoreTime -= 1 * KingdomHeartsPlugin.UiSpeed;
+                HealthRestoreTime -= 1 * FinalFantasy7Plugin.UiSpeed;
             }
             else if (HpTemp < currentHp)
             {
-                HpTemp += (currentHp - HpBeforeRestored) * KingdomHeartsPlugin.UiSpeed;
+                HpTemp += (currentHp - HpBeforeRestored) * FinalFantasy7Plugin.UiSpeed;
                 if (HpBeforeRestored > currentHp)
                     HpBeforeRestored = currentHp;
             }
@@ -158,25 +158,25 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
             switch (DamagedHealthAlpha)
             {
                 case > 0.97f:
-                    DamagedHealthAlpha -= 0.09f * KingdomHeartsPlugin.UiSpeed;
+                    DamagedHealthAlpha -= 0.09f * FinalFantasy7Plugin.UiSpeed;
                     break;
                 case > 0.6f:
-                    DamagedHealthAlpha -= 0.8f * KingdomHeartsPlugin.UiSpeed;
+                    DamagedHealthAlpha -= 0.8f * FinalFantasy7Plugin.UiSpeed;
                     break;
                 case > 0.59f:
-                    DamagedHealthAlpha -= 0.005f * KingdomHeartsPlugin.UiSpeed;
+                    DamagedHealthAlpha -= 0.005f * FinalFantasy7Plugin.UiSpeed;
                     break;
                 case > 0.0f:
-                    DamagedHealthAlpha -= 1f * KingdomHeartsPlugin.UiSpeed;
+                    DamagedHealthAlpha -= 1f * FinalFantasy7Plugin.UiSpeed;
                     break;
             }
 
             // Vertical wobble
-            _verticalAnimationTicks += 240 * KingdomHeartsPlugin.UiSpeed;
+            _verticalAnimationTicks += 240 * FinalFantasy7Plugin.UiSpeed;
 
             while (_verticalAnimationTicks > 1)
             {
-                float intensity = KingdomHeartsPlugin.Ui.Configuration.HpDamageWobbleIntensity / 100f;
+                float intensity = FinalFantasy7Plugin.Ui.Configuration.HpDamageWobbleIntensity / 100f;
                 _verticalAnimationTicks--;
                 HealthY += HealthVerticalSpeed;
 
@@ -203,18 +203,18 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
 
         private void UpdateLowHealth(uint health, uint maxHealth)
         {
-            if ((health > maxHealth * (KingdomHeartsPlugin.Ui.Configuration.LowHpPercent / 100f) || health <= 0) && LowHealthAlpha <= 0) return;
+            if ((health > maxHealth * (FinalFantasy7Plugin.Ui.Configuration.LowHpPercent / 100f) || health <= 0) && LowHealthAlpha <= 0) return;
 
             if (LowHealthAlphaDirection == 0)
             {
-                LowHealthAlpha += 1.6f * KingdomHeartsPlugin.UiSpeed;
+                LowHealthAlpha += 1.6f * FinalFantasy7Plugin.UiSpeed;
 
                 if (LowHealthAlpha >= .4)
                     LowHealthAlphaDirection = 1;
             }
             else
             {
-                LowHealthAlpha -= 1.6f * KingdomHeartsPlugin.UiSpeed;
+                LowHealthAlpha -= 1.6f * FinalFantasy7Plugin.UiSpeed;
 
                 if (LowHealthAlpha <= 0)
                     LowHealthAlphaDirection = 0;
@@ -227,9 +227,9 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
 
         private void DrawHealth(ImDrawListPtr drawList, uint hp, uint maxHp)
         {
-            var fullRing = KingdomHeartsPlugin.IsInPvp ? KingdomHeartsPlugin.Ui.Configuration.PvpHpForFullRing : KingdomHeartsPlugin.Ui.Configuration.HpForFullRing;
-            var minimumMaxHpSize = KingdomHeartsPlugin.IsInPvp ? KingdomHeartsPlugin.Ui.Configuration.PvpMinimumHpForLength : KingdomHeartsPlugin.Ui.Configuration.MinimumHpForLength;
-            var maximumMaxHpSize = KingdomHeartsPlugin.IsInPvp ? KingdomHeartsPlugin.Ui.Configuration.PvpMaximumHpForMaximumLength : KingdomHeartsPlugin.Ui.Configuration.MaximumHpForMaximumLength;
+            var fullRing = FinalFantasy7Plugin.IsInPvp ? FinalFantasy7Plugin.Ui.Configuration.PvpHpForFullRing : FinalFantasy7Plugin.Ui.Configuration.HpForFullRing;
+            var minimumMaxHpSize = FinalFantasy7Plugin.IsInPvp ? FinalFantasy7Plugin.Ui.Configuration.PvpMinimumHpForLength : FinalFantasy7Plugin.Ui.Configuration.MinimumHpForLength;
+            var maximumMaxHpSize = FinalFantasy7Plugin.IsInPvp ? FinalFantasy7Plugin.Ui.Configuration.PvpMaximumHpForMaximumLength : FinalFantasy7Plugin.Ui.Configuration.MaximumHpForMaximumLength;
             HpLengthMultiplier = maxHp < minimumMaxHpSize
                 ?
                 minimumMaxHpSize / (float) maxHp
@@ -241,7 +241,7 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
 
             try
             {
-                DrawRingEdgesAndTrack(drawList, maxHealthPercent, drawPosition + new Vector2(0, (int)(HealthY * KingdomHeartsPlugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * KingdomHeartsPlugin.Ui.Configuration.Scale)));
+                DrawRingEdgesAndTrack(drawList, maxHealthPercent, drawPosition + new Vector2(0, (int)(HealthY * FinalFantasy7Plugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * FinalFantasy7Plugin.Ui.Configuration.Scale)));
             }
             catch
             {
@@ -249,42 +249,42 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
                 return;
             }
 
-            HealthRingBg?.Draw(drawList, maxHealthPercent, drawPosition + new Vector2(0, (int)(HealthY * KingdomHeartsPlugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * KingdomHeartsPlugin.Ui.Configuration.Scale)), 3, KingdomHeartsPlugin.Ui.Configuration.Scale);
+            HealthRingBg?.Draw(drawList, maxHealthPercent, drawPosition + new Vector2(0, (int)(HealthY * FinalFantasy7Plugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * FinalFantasy7Plugin.Ui.Configuration.Scale)), 3, FinalFantasy7Plugin.Ui.Configuration.Scale);
 
             if (DamagedHealthAlpha > 0)
             {
                 if (HealthLostRing is not null)
                 {
                     HealthLostRing.Alpha = DamagedHealthAlpha;
-                    HealthLostRing.Draw(drawList, HpBeforeDamaged / (float)fullRing * HpLengthMultiplier, drawPosition + new Vector2(0, (int)(HealthY * KingdomHeartsPlugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * KingdomHeartsPlugin.Ui.Configuration.Scale)), 3, KingdomHeartsPlugin.Ui.Configuration.Scale);
+                    HealthLostRing.Draw(drawList, HpBeforeDamaged / (float)fullRing * HpLengthMultiplier, drawPosition + new Vector2(0, (int)(HealthY * FinalFantasy7Plugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * FinalFantasy7Plugin.Ui.Configuration.Scale)), 3, FinalFantasy7Plugin.Ui.Configuration.Scale);
                 }
             }
 
-            if (KingdomHeartsPlugin.Ui.Configuration.ShowHpRecovery)
+            if (FinalFantasy7Plugin.Ui.Configuration.ShowHpRecovery)
             {
                 if (HpTemp < hp)
-                    HealthRestoredRing?.Draw(drawList, hp / (float)fullRing * HpLengthMultiplier, drawPosition + new Vector2(0, (int) (HealthY * KingdomHeartsPlugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * KingdomHeartsPlugin.Ui.Configuration.Scale)), 3, KingdomHeartsPlugin.Ui.Configuration.Scale);
+                    HealthRestoredRing?.Draw(drawList, hp / (float)fullRing * HpLengthMultiplier, drawPosition + new Vector2(0, (int) (HealthY * FinalFantasy7Plugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * FinalFantasy7Plugin.Ui.Configuration.Scale)), 3, FinalFantasy7Plugin.Ui.Configuration.Scale);
 
-                HealthRing?.Draw(drawList, HpTemp / fullRing * HpLengthMultiplier, drawPosition + new Vector2(0, (int) (HealthY * KingdomHeartsPlugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * KingdomHeartsPlugin.Ui.Configuration.Scale)), 3, KingdomHeartsPlugin.Ui.Configuration.Scale);
+                HealthRing?.Draw(drawList, HpTemp / fullRing * HpLengthMultiplier, drawPosition + new Vector2(0, (int) (HealthY * FinalFantasy7Plugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * FinalFantasy7Plugin.Ui.Configuration.Scale)), 3, FinalFantasy7Plugin.Ui.Configuration.Scale);
             }
             else
             {
-                HealthRing?.Draw(drawList, hp / (float)fullRing * HpLengthMultiplier, drawPosition + new Vector2(0, (int) (HealthY * KingdomHeartsPlugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * KingdomHeartsPlugin.Ui.Configuration.Scale)), 3, KingdomHeartsPlugin.Ui.Configuration.Scale);
+                HealthRing?.Draw(drawList, hp / (float)fullRing * HpLengthMultiplier, drawPosition + new Vector2(0, (int) (HealthY * FinalFantasy7Plugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * FinalFantasy7Plugin.Ui.Configuration.Scale)), 3, FinalFantasy7Plugin.Ui.Configuration.Scale);
             }
 
-            RingOutline?.Draw(drawList, maxHealthPercent, drawPosition + new Vector2(0, (int)(HealthY * KingdomHeartsPlugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * KingdomHeartsPlugin.Ui.Configuration.Scale)), 3, KingdomHeartsPlugin.Ui.Configuration.Scale);
+            RingOutline?.Draw(drawList, maxHealthPercent, drawPosition + new Vector2(0, (int)(HealthY * FinalFantasy7Plugin.Ui.Configuration.HpDamageWobbleIntensity / 100f * FinalFantasy7Plugin.Ui.Configuration.Scale)), 3, FinalFantasy7Plugin.Ui.Configuration.Scale);
 
             DrawLongHealthBar(drawList, hp, maxHp);
         }
         
         private void DrawLongHealthBar(ImDrawListPtr drawList, uint hp, uint maxHp)
         {
-            var fullRing = KingdomHeartsPlugin.IsInPvp ? KingdomHeartsPlugin.Ui.Configuration.PvpHpForFullRing : KingdomHeartsPlugin.Ui.Configuration.HpForFullRing;
-            var HpPerWidth = KingdomHeartsPlugin.IsInPvp ? KingdomHeartsPlugin.Ui.Configuration.PvpHpPerPixelLongBar : KingdomHeartsPlugin.Ui.Configuration.HpPerPixelLongBar;
-            var basePosition = new Vector2(129, 212 + HealthY * KingdomHeartsPlugin.Ui.Configuration.HpDamageWobbleIntensity / 100f);
-            var healthLength = ((KingdomHeartsPlugin.Ui.Configuration.ShowHpRecovery ? HpTemp : hp) * HpLengthMultiplier - fullRing) / HpPerWidth;
+            var fullRing = FinalFantasy7Plugin.IsInPvp ? FinalFantasy7Plugin.Ui.Configuration.PvpHpForFullRing : FinalFantasy7Plugin.Ui.Configuration.HpForFullRing;
+            var HpPerWidth = FinalFantasy7Plugin.IsInPvp ? FinalFantasy7Plugin.Ui.Configuration.PvpHpPerPixelLongBar : FinalFantasy7Plugin.Ui.Configuration.HpPerPixelLongBar;
+            var basePosition = new Vector2(129, 212 + HealthY * FinalFantasy7Plugin.Ui.Configuration.HpDamageWobbleIntensity / 100f);
+            var healthLength = ((FinalFantasy7Plugin.Ui.Configuration.ShowHpRecovery ? HpTemp : hp) * HpLengthMultiplier - fullRing) / HpPerWidth;
             var damagedHealthLength = (HpBeforeDamaged * HpLengthMultiplier - fullRing) / HpPerWidth;
-            var restoredHealthLength = ((KingdomHeartsPlugin.Ui.Configuration.ShowHpRecovery ? hp : 0) * HpLengthMultiplier - fullRing) / HpPerWidth;
+            var restoredHealthLength = ((FinalFantasy7Plugin.Ui.Configuration.ShowHpRecovery ? hp : 0) * HpLengthMultiplier - fullRing) / HpPerWidth;
             var maxHealthLength = (maxHp * HpLengthMultiplier - fullRing) / HpPerWidth;
             
             if (maxHealthLength > 0)
@@ -317,12 +317,12 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
 
         private void DrawRingEdgesAndTrack(ImDrawListPtr drawList, float percent, Vector2 position)
         {
-            var size = 256 * KingdomHeartsPlugin.Ui.Configuration.Scale;
+            var size = 256 * FinalFantasy7Plugin.Ui.Configuration.Scale;
 
             drawList.PushClipRect(position, position + new Vector2(size, size));
             drawList.AddImage(RingTrackTexture.GetWrapOrEmpty().ImGuiHandle, position, position + new Vector2(size, size));
             drawList.AddImage(RingBaseTexture.GetWrapOrEmpty().ImGuiHandle, position, position + new Vector2(size, size));
-            ImageDrawing.ImageRotated(drawList, RingEndTexture.GetWrapOrEmpty().ImGuiHandle, new Vector2(position.X + size / 2f, position.Y + size / 2f), new Vector2(RingEndTexture.GetWrapOrEmpty().Width * KingdomHeartsPlugin.Ui.Configuration.Scale, RingEndTexture.GetWrapOrEmpty().Height * KingdomHeartsPlugin.Ui.Configuration.Scale), Math.Min(percent, 1) * 0.75f * (float)Math.PI * 2);
+            ImageDrawing.ImageRotated(drawList, RingEndTexture.GetWrapOrEmpty().ImGuiHandle, new Vector2(position.X + size / 2f, position.Y + size / 2f), new Vector2(RingEndTexture.GetWrapOrEmpty().Width * FinalFantasy7Plugin.Ui.Configuration.Scale, RingEndTexture.GetWrapOrEmpty().Height * FinalFantasy7Plugin.Ui.Configuration.Scale), Math.Min(percent, 1) * 0.75f * (float)Math.PI * 2);
             drawList.PopClipRect();
         }
 
@@ -364,51 +364,51 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
         // Textures
         private ISharedImmediateTexture HealthRingSegmentTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_health_segment.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_health_segment.png"));
         }
         private ISharedImmediateTexture HealthRestoredRingSegmentTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_health_restored_segment.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_health_restored_segment.png"));
         }
         private ISharedImmediateTexture BarOutlineTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\bar_outline.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\bar_outline.png"));
         }
         private ISharedImmediateTexture BarColorlessTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\bar_colorless.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\bar_colorless.png"));
         }
         private ISharedImmediateTexture BarForegroundTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\bar_foreground.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\bar_foreground.png"));
         }
         private ISharedImmediateTexture BarRecoveryTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\bar_recovery.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\bar_recovery.png"));
         }
         private ISharedImmediateTexture BarEdgeTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\bar_edge.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\bar_edge.png"));
         }
         private ISharedImmediateTexture RingValueSegmentTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_value_segment.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_value_segment.png"));
         }
         private ISharedImmediateTexture RingOutlineTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_outline_segment.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_outline_segment.png"));
         }
         private ISharedImmediateTexture RingTrackTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_track.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_track.png"));
         }
         private ISharedImmediateTexture RingBaseTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_base_edge.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_base_edge.png"));
         }
         private ISharedImmediateTexture RingEndTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\HealthBar\ring_end_edge.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\HealthBar\ring_end_edge.png"));
         }
 
         // Rings

@@ -7,7 +7,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Content Include="KingdomHeartsPlugin.json">
+    <Content Include="FinalFantasy7Plugin.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\bar_textures.png">

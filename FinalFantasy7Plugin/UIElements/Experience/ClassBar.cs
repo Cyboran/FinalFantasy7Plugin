@@ -44,15 +44,15 @@ namespace KingdomHeartsPlugin.UIElements.Experience
     {
         private ISharedImmediateTexture _expBarSegmentTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\Experience\ring_experience_segment.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\Experience\ring_experience_segment.png"));
         }
         private ISharedImmediateTexture _expColorlessBarSegmentTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\Experience\ring_experience_colorless_segment.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\Experience\ring_experience_colorless_segment.png"));
         }
         private ISharedImmediateTexture _expBarBaseTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\Experience\ring_experience_outline.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\Experience\ring_experience_outline.png"));
         }
 
         unsafe
@@ -60,15 +60,15 @@ namespace KingdomHeartsPlugin.UIElements.Experience
 
         public ClassBar()
         {
-            ExperienceRing = new Ring(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\Experience\ring_experience_segment.png"));
-            ExperienceRingRest = new Ring(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\Experience\ring_experience_segment.png"), alpha: 0.25f);
-            ExperienceRingGain = new Ring(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\Experience\ring_experience_colorless_segment.png"), 0.65f, 0.92f, 1.00f);
-            ExperienceRingBg = new Ring(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\Experience\ring_experience_colorless_segment.png"), 0.07843f, 0.07843f, 0.0745f);
+            ExperienceRing = new Ring(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\Experience\ring_experience_segment.png"));
+            ExperienceRingRest = new Ring(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\Experience\ring_experience_segment.png"), alpha: 0.25f);
+            ExperienceRingGain = new Ring(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\Experience\ring_experience_colorless_segment.png"), 0.65f, 0.92f, 1.00f);
+            ExperienceRingBg = new Ring(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\Experience\ring_experience_colorless_segment.png"), 0.07843f, 0.07843f, 0.0745f);
         }
 
         private unsafe void Update(IPlayerCharacter player)
         {
-            _addonExp = (AddonExp*)KingdomHeartsPlugin.Gui.GetAddonByName("_Exp", 1);
+            _addonExp = (AddonExp*)FinalFantasy7Plugin.Gui.GetAddonByName("_Exp", 1);
             try
             {
                 UpdateExperience(_addonExp->CurrentExp, _addonExp->RequiredExp, _addonExp->RestedExp, player.ClassJob.RowId, player.Level);
@@ -77,7 +77,7 @@ namespace KingdomHeartsPlugin.UIElements.Experience
             {
                 try
                 {
-                    _addonExp = (AddonExp*)KingdomHeartsPlugin.Gui.GetAddonByName("_Exp", 1);
+                    _addonExp = (AddonExp*)FinalFantasy7Plugin.Gui.GetAddonByName("_Exp", 1);
                 }
                 catch
                 {
@@ -131,11 +131,11 @@ namespace KingdomHeartsPlugin.UIElements.Experience
         {
             if (ExpGainTime > 0)
             {
-                ExpGainTime -= 1 * KingdomHeartsPlugin.UiSpeed;
+                ExpGainTime -= 1 * FinalFantasy7Plugin.UiSpeed;
             }
             else if (ExpTemp < exp)
             {
-                ExpTemp += (exp - ExpBeforeGain) * KingdomHeartsPlugin.UiSpeed;
+                ExpTemp += (exp - ExpBeforeGain) * FinalFantasy7Plugin.UiSpeed;
             }
 
             if (ExpTemp > exp)
@@ -147,19 +147,19 @@ namespace KingdomHeartsPlugin.UIElements.Experience
             Update(player);
             var drawList = ImGui.GetWindowDrawList();
 
-            int size = (int)Math.Ceiling(256 * KingdomHeartsPlugin.Ui.Configuration.Scale);
-            var drawPosition = ImGui.GetItemRectMin() + new Vector2(0, (int)(healthY * KingdomHeartsPlugin.Ui.Configuration.Scale));
+            int size = (int)Math.Ceiling(256 * FinalFantasy7Plugin.Ui.Configuration.Scale);
+            var drawPosition = ImGui.GetItemRectMin() + new Vector2(0, (int)(healthY * FinalFantasy7Plugin.Ui.Configuration.Scale));
 
-            if (KingdomHeartsPlugin.Ui.Configuration.ExpBarEnabled)
+            if (FinalFantasy7Plugin.Ui.Configuration.ExpBarEnabled)
             {
 
-                ExperienceRingBg?.Draw(drawList, 1, drawPosition, 4, KingdomHeartsPlugin.Ui.Configuration.Scale);
+                ExperienceRingBg?.Draw(drawList, 1, drawPosition, 4, FinalFantasy7Plugin.Ui.Configuration.Scale);
 
-                ExperienceRingRest?.Draw(drawList, (Experience + RestedBonusExperience) / (float)MaxExperience, drawPosition, 4, KingdomHeartsPlugin.Ui.Configuration.Scale);
+                ExperienceRingRest?.Draw(drawList, (Experience + RestedBonusExperience) / (float)MaxExperience, drawPosition, 4, FinalFantasy7Plugin.Ui.Configuration.Scale);
 
-                ExperienceRingGain?.Draw(drawList, Experience / (float)MaxExperience, drawPosition, 4, KingdomHeartsPlugin.Ui.Configuration.Scale);
+                ExperienceRingGain?.Draw(drawList, Experience / (float)MaxExperience, drawPosition, 4, FinalFantasy7Plugin.Ui.Configuration.Scale);
 
-                ExperienceRing?.Draw(drawList, ExpTemp / MaxExperience, drawPosition, 4, KingdomHeartsPlugin.Ui.Configuration.Scale);
+                ExperienceRing?.Draw(drawList, ExpTemp / MaxExperience, drawPosition, 4, FinalFantasy7Plugin.Ui.Configuration.Scale);
 
                 drawList.PushClipRect(drawPosition, drawPosition + new Vector2(size, size));
                 drawList.AddImage(_expBarBaseTexture.GetWrapOrEmpty().ImGuiHandle, drawPosition, drawPosition + new Vector2(size, size));
@@ -168,36 +168,36 @@ namespace KingdomHeartsPlugin.UIElements.Experience
 
             Portrait.Draw(healthY);
 
-            if (KingdomHeartsPlugin.Ui.Configuration.ClassIconEnabled)
+            if (FinalFantasy7Plugin.Ui.Configuration.ClassIconEnabled)
             {
-                float iconSize = KingdomHeartsPlugin.Ui.Configuration.ClassIconScale;
+                float iconSize = FinalFantasy7Plugin.Ui.Configuration.ClassIconScale;
 
-                if (KingdomHeartsPlugin.Cs.LocalPlayer is null) return;
+                if (FinalFantasy7Plugin.Cs.LocalPlayer is null) return;
 
                 
-                ImageDrawing.DrawIcon(drawList, (ushort)(62000 + KingdomHeartsPlugin.Cs.LocalPlayer.ClassJob.RowId),
+                ImageDrawing.DrawIcon(drawList, (ushort)(62000 + FinalFantasy7Plugin.Cs.LocalPlayer.ClassJob.RowId),
                     new Vector2(iconSize, iconSize),
                     //new Vector2((int)(size / 2f), (int)(size / 2f + 18 * KingdomHeartsPlugin.Ui.Configuration.Scale)) +
-                    new Vector2((int)(KingdomHeartsPlugin.Ui.Configuration.ClassIconX), (int)(KingdomHeartsPlugin.Ui.Configuration.ClassIconY)) +
-                    new Vector2(0, (int)(healthY * KingdomHeartsPlugin.Ui.Configuration.ClassIconScale * KingdomHeartsPlugin.Ui.Configuration.Scale)));
+                    new Vector2((int)(FinalFantasy7Plugin.Ui.Configuration.ClassIconX), (int)(FinalFantasy7Plugin.Ui.Configuration.ClassIconY)) +
+                    new Vector2(0, (int)(healthY * FinalFantasy7Plugin.Ui.Configuration.ClassIconScale * FinalFantasy7Plugin.Ui.Configuration.Scale)));
             }
 
-            if (KingdomHeartsPlugin.Ui.Configuration.LevelEnabled)
-                ImGuiAdditions.TextShadowedDrawList(drawList, KingdomHeartsPlugin.Ui.Configuration.LevelTextSize,
-                    $"Lv{KingdomHeartsPlugin.Cs.LocalPlayer?.Level}",
-                    drawPosition + new Vector2(KingdomHeartsPlugin.Ui.Configuration.LevelTextX, KingdomHeartsPlugin.Ui.Configuration.LevelTextY) * KingdomHeartsPlugin.Ui.Configuration.Scale,
+            if (FinalFantasy7Plugin.Ui.Configuration.LevelEnabled)
+                ImGuiAdditions.TextShadowedDrawList(drawList, FinalFantasy7Plugin.Ui.Configuration.LevelTextSize,
+                    $"Lv{FinalFantasy7Plugin.Cs.LocalPlayer?.Level}",
+                    drawPosition + new Vector2(FinalFantasy7Plugin.Ui.Configuration.LevelTextX, FinalFantasy7Plugin.Ui.Configuration.LevelTextY) * FinalFantasy7Plugin.Ui.Configuration.Scale,
                     new Vector4(249 / 255f, 247 / 255f, 232 / 255f, 0.9f),
                     new Vector4(96 / 255f, 78 / 255f, 23 / 255f, 0.25f), 3,
-                    KingdomHeartsPlugin.Ui.Configuration.LevelTextAlignment);
+                    FinalFantasy7Plugin.Ui.Configuration.LevelTextAlignment);
 
-            if (KingdomHeartsPlugin.Ui.Configuration.ExpValueTextEnabled)
-                ImGuiAdditions.TextShadowedDrawList(drawList, KingdomHeartsPlugin.Ui.Configuration.ExpValueTextSize,
-                    $"{StringFormatting.FormatDigits(Experience, KingdomHeartsPlugin.Ui.Configuration.ExpValueTextFormatStyle)} / {StringFormatting.FormatDigits(MaxExperience, KingdomHeartsPlugin.Ui.Configuration.ExpValueTextFormatStyle)}",
-                    drawPosition + new Vector2(KingdomHeartsPlugin.Ui.Configuration.ExpValueTextPositionX, KingdomHeartsPlugin.Ui.Configuration.ExpValueTextPositionY),
+            if (FinalFantasy7Plugin.Ui.Configuration.ExpValueTextEnabled)
+                ImGuiAdditions.TextShadowedDrawList(drawList, FinalFantasy7Plugin.Ui.Configuration.ExpValueTextSize,
+                    $"{StringFormatting.FormatDigits(Experience, FinalFantasy7Plugin.Ui.Configuration.ExpValueTextFormatStyle)} / {StringFormatting.FormatDigits(MaxExperience, FinalFantasy7Plugin.Ui.Configuration.ExpValueTextFormatStyle)}",
+                    drawPosition + new Vector2(FinalFantasy7Plugin.Ui.Configuration.ExpValueTextPositionX, FinalFantasy7Plugin.Ui.Configuration.ExpValueTextPositionY),
                     new Vector4(255 / 255f, 255 / 255f, 255 / 255f, 1f),
                     new Vector4(0 / 255f, 0 / 255f, 0 / 255f, 0.25f),
                     3,
-                    (TextAlignment)KingdomHeartsPlugin.Ui.Configuration.ExpValueTextAlignment);
+                    (TextAlignment)FinalFantasy7Plugin.Ui.Configuration.ExpValueTextAlignment);
         }
 
         public unsafe void Dispose()

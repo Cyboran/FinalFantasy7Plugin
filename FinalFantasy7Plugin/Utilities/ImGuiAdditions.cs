@@ -49,13 +49,13 @@ namespace KingdomHeartsPlugin.Utilities
         public static void TextCenteredShadowed(string text, float size, Vector2 position, Vector4 foregroundColor, Vector4 shadowColor, byte shadowWidth = 1)
         {
             ImGui.SetWindowFontScale(size);
-            float fontSize = ImGui.GetFontSize() * text.Length * KingdomHeartsPlugin.Ui.Configuration.Scale;
+            float fontSize = ImGui.GetFontSize() * text.Length * FinalFantasy7Plugin.Ui.Configuration.Scale;
             var y = position.Y;
             var x = position.X - fontSize;
 
 
             TextShadowedDrawList(ImGui.GetWindowDrawList(),
-                KingdomHeartsPlugin.Ui.Configuration.ResourceTextSize * KingdomHeartsPlugin.Ui.Configuration.Scale,
+                FinalFantasy7Plugin.Ui.Configuration.ResourceTextSize * FinalFantasy7Plugin.Ui.Configuration.Scale,
                 $"{fontSize} Pos: {x},{y}",
                 ImGui.GetItemRectMin(),
                 new Vector4(255 / 255f, 255 / 255f, 255 / 255f, 1f),
@@ -85,7 +85,7 @@ namespace KingdomHeartsPlugin.Utilities
 
         public static void TextShadowedDrawList(ImDrawListPtr drawList, float size, string text, Vector2 position, Vector4 foregroundColor, Vector4 shadowColor, byte shadowWidth = 1, TextAlignment alignment = TextAlignment.Left)
         {
-            var sizeVector = new Vector2(size * text.Length, size * text.Length) * KingdomHeartsPlugin.Ui.Configuration.Scale;
+            var sizeVector = new Vector2(size * text.Length, size * text.Length) * FinalFantasy7Plugin.Ui.Configuration.Scale;
             var x = alignment switch
             {
                 TextAlignment.Center => position.X - sizeVector.X / 4.55f,
@@ -104,10 +104,10 @@ namespace KingdomHeartsPlugin.Utilities
                 for (var j = -shadowWidth; j < shadowWidth; j++)
                 {
                     if (i == 0 && j == 0) continue;
-                    drawList.AddText(font, size * KingdomHeartsPlugin.Ui.Configuration.Scale, new Vector2(x + i * KingdomHeartsPlugin.Ui.Configuration.Scale, y + j * KingdomHeartsPlugin.Ui.Configuration.Scale), ImGui.GetColorU32(shadowColor), text);
+                    drawList.AddText(font, size * FinalFantasy7Plugin.Ui.Configuration.Scale, new Vector2(x + i * FinalFantasy7Plugin.Ui.Configuration.Scale, y + j * FinalFantasy7Plugin.Ui.Configuration.Scale), ImGui.GetColorU32(shadowColor), text);
                 }
             }
-            drawList.AddText(font, size * KingdomHeartsPlugin.Ui.Configuration.Scale, new Vector2(x, y), ImGui.GetColorU32(foregroundColor), text);
+            drawList.AddText(font, size * FinalFantasy7Plugin.Ui.Configuration.Scale, new Vector2(x, y), ImGui.GetColorU32(foregroundColor), text);
             drawList.PopClipRect();
         }
     }

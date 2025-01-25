@@ -15,19 +15,19 @@ namespace KingdomHeartsPlugin.UIElements.ParameterResource
     {
         private ISharedImmediateTexture _barBackgroundTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\ResourceBar\background.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\ResourceBar\background.png"));
         }
         private ISharedImmediateTexture _barForegroundTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\ResourceBar\foreground.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\ResourceBar\foreground.png"));
         }
         private ISharedImmediateTexture _mpBaseTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\ResourceBar\MP_base.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\ResourceBar\MP_base.png"));
         }
         private ISharedImmediateTexture _barEdgeTexture
         {
-            get => ImageDrawing.GetSharedTexture(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\ResourceBar\edge.png"));
+            get => ImageDrawing.GetSharedTexture(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\ResourceBar\edge.png"));
         }
 
         private enum Resource
@@ -53,9 +53,9 @@ namespace KingdomHeartsPlugin.UIElements.ParameterResource
                 ResourceMax = player.MaxMp;
                 ResourceType = Resource.Mp;
 
-                minLength = KingdomHeartsPlugin.Ui.Configuration.MinimumMpLength;
-                maxLength = KingdomHeartsPlugin.Ui.Configuration.MaximumMpLength;
-                lengthRate = KingdomHeartsPlugin.Ui.Configuration.MpPerPixelLength;
+                minLength = FinalFantasy7Plugin.Ui.Configuration.MinimumMpLength;
+                maxLength = FinalFantasy7Plugin.Ui.Configuration.MaximumMpLength;
+                lengthRate = FinalFantasy7Plugin.Ui.Configuration.MpPerPixelLength;
             }
             else if (player.MaxCp > 0)
             {
@@ -63,9 +63,9 @@ namespace KingdomHeartsPlugin.UIElements.ParameterResource
                 ResourceMax = player.MaxCp;
                 ResourceType = Resource.Cp;
 
-                minLength = KingdomHeartsPlugin.Ui.Configuration.MinimumCpLength;
-                maxLength = KingdomHeartsPlugin.Ui.Configuration.MaximumCpLength;
-                lengthRate = KingdomHeartsPlugin.Ui.Configuration.CpPerPixelLength;
+                minLength = FinalFantasy7Plugin.Ui.Configuration.MinimumCpLength;
+                maxLength = FinalFantasy7Plugin.Ui.Configuration.MaximumCpLength;
+                lengthRate = FinalFantasy7Plugin.Ui.Configuration.CpPerPixelLength;
             }
             else if (player.MaxGp > 0)
             {
@@ -73,9 +73,9 @@ namespace KingdomHeartsPlugin.UIElements.ParameterResource
                 ResourceMax = player.MaxGp;
                 ResourceType = Resource.Gp;
 
-                minLength = KingdomHeartsPlugin.Ui.Configuration.MinimumGpLength;
-                maxLength = KingdomHeartsPlugin.Ui.Configuration.MaximumGpLength;
-                lengthRate = KingdomHeartsPlugin.Ui.Configuration.GpPerPixelLength;
+                minLength = FinalFantasy7Plugin.Ui.Configuration.MinimumGpLength;
+                maxLength = FinalFantasy7Plugin.Ui.Configuration.MaximumGpLength;
+                lengthRate = FinalFantasy7Plugin.Ui.Configuration.GpPerPixelLength;
             }
 
             var lengthMultiplier = ResourceMax < minLength ? minLength / (float)ResourceMax : ResourceMax > maxLength ? (float)maxLength / ResourceMax : 1f;
@@ -87,8 +87,8 @@ namespace KingdomHeartsPlugin.UIElements.ParameterResource
         {
             Update(player);
             var drawList = ImGui.GetWindowDrawList();
-            var basePosition =  new Vector2(KingdomHeartsPlugin.Ui.Configuration.ResourceBarPositionX, KingdomHeartsPlugin.Ui.Configuration.ResourceBarPositionY);
-            var textPosition = new Vector2(KingdomHeartsPlugin.Ui.Configuration.ResourceTextPositionX, KingdomHeartsPlugin.Ui.Configuration.ResourceTextPositionY) * KingdomHeartsPlugin.Ui.Configuration.Scale;
+            var basePosition =  new Vector2(FinalFantasy7Plugin.Ui.Configuration.ResourceBarPositionX, FinalFantasy7Plugin.Ui.Configuration.ResourceBarPositionY);
+            var textPosition = new Vector2(FinalFantasy7Plugin.Ui.Configuration.ResourceTextPositionX, FinalFantasy7Plugin.Ui.Configuration.ResourceTextPositionY) * FinalFantasy7Plugin.Ui.Configuration.Scale;
 
             // Base
             ImageDrawing.DrawImage(drawList, _mpBaseTexture, new Vector2(basePosition.X - 1, basePosition.Y), new Vector4(0, 0, 74 / 80f, 1));
@@ -104,8 +104,8 @@ namespace KingdomHeartsPlugin.UIElements.ParameterResource
             // Base Edge
             ImageDrawing.DrawImageRotated(drawList, _barEdgeTexture, new Vector2(basePosition.X + 74, basePosition.Y + 16), new Vector2(_barEdgeTexture.GetWrapOrEmpty().Width, _barEdgeTexture.GetWrapOrEmpty().Height), (float)Math.PI);
 
-            if (KingdomHeartsPlugin.Ui.Configuration.ShowResourceVal)
-                ImGuiAdditions.TextShadowedDrawList(drawList, KingdomHeartsPlugin.Ui.Configuration.ResourceTextSize, $"{StringFormatting.FormatDigits(KingdomHeartsPlugin.Ui.Configuration.TruncateMp && ResourceType == Resource.Mp ? ResourceValue / 100 : ResourceValue, KingdomHeartsPlugin.Ui.Configuration.ResourceTextStyle)}", ImGui.GetItemRectMin() + basePosition * KingdomHeartsPlugin.Ui.Configuration.Scale + textPosition, new Vector4(255 / 255f, 255 / 255f, 255 / 255f, 1f), new Vector4(0 / 255f, 0 / 255f, 0 / 255f, 0.25f), 3, (TextAlignment)KingdomHeartsPlugin.Ui.Configuration.ResourceTextAlignment);
+            if (FinalFantasy7Plugin.Ui.Configuration.ShowResourceVal)
+                ImGuiAdditions.TextShadowedDrawList(drawList, FinalFantasy7Plugin.Ui.Configuration.ResourceTextSize, $"{StringFormatting.FormatDigits(FinalFantasy7Plugin.Ui.Configuration.TruncateMp && ResourceType == Resource.Mp ? ResourceValue / 100 : ResourceValue, FinalFantasy7Plugin.Ui.Configuration.ResourceTextStyle)}", ImGui.GetItemRectMin() + basePosition * FinalFantasy7Plugin.Ui.Configuration.Scale + textPosition, new Vector4(255 / 255f, 255 / 255f, 255 / 255f, 1f), new Vector4(0 / 255f, 0 / 255f, 0 / 255f, 0.25f), 3, (TextAlignment)FinalFantasy7Plugin.Ui.Configuration.ResourceTextAlignment);
          }
 
         public void Dispose()
