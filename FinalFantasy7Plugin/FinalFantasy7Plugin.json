@@ -1,9 +1,9 @@
 {
-  "Author": "Gotest",
-  "Name": "Kingdom Hearts UI Bars",
-  "Description": "A plugin that makes Kingdom Hearts UI stuff, such as a health bar for the player.\nIf you have any questions, issues or suggestions, please post an issue in the github or ping me in the Discord!",
-  "RepoUrl": "https://github.com/Arrenton/KingdomHeartsPlugin",
-  "Punchline": "HP bar, MP bar, EXP bar, oh my!",
-  "Changelog": "Updated to API 11",
-  "Tags": [ "ui", "kh", "healthbar", "health bar", "hp bar" ]
+  "Author": "Cyboran",
+  "Name": "Final Fantasy 7 Remake/Rebirth UI Bars",
+  "Description": "A plugin that makes Final Fantasy 7 Remake/Rebirth UI, such as a health bar for the player.\nIf you have any questions, issues or suggestions, please post an issue in the github or ping me in the Discord!",
+  "RepoUrl": "https://github.com/Arrenton/KingdomHeartsPlugin", // TODO: Change URL appropriately.
+  "Punchline": "HP bar, MP bar, EXP bar.",
+  "Changelog": "Forked from original KH Plugin for personal use.",
+  "Tags": [ "ui", "ff7", "ff7r", "healthbar", "health bar", "hp bar" ]
 }

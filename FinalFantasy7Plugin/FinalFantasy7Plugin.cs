@@ -13,10 +13,10 @@ namespace FinalFantasy7Plugin
 {
     public sealed class FinalFantasy7Plugin : IDalamudPlugin
     {
-        public string Name => "Kingdom Hearts UI Plugin";
+        public string Name => "Final Fantasy 7 Remake/Rebirth UI Plugin";
 
-        private const string SettingsCommand = "/khpconfig";
-        private const string ToggleCommand = "/khp";
+        private const string SettingsCommand = "/ff7rconfig";
+        private const string ToggleCommand = "/ff7r";
 
         public static string TemplateLocation = "";
 
@@ -58,12 +58,12 @@ namespace FinalFantasy7Plugin
 
             Cm.AddHandler(SettingsCommand, new CommandInfo(OnSettingsCommand)
             {
-                HelpMessage = "Opens configuration for Kingdom Hearts UI Bars."
+                HelpMessage = "Opens configuration for Final Fantasy 7 Remake/Rebirth UI Bars."
             });
 
             Cm.AddHandler(ToggleCommand, new CommandInfo(OnToggleCommand)
             {
-                HelpMessage = "Toggles the KH UI."
+                HelpMessage = "Toggles the FF7:R UI."
             });
 
             Pi.UiBuilder.Draw += DrawUi;
