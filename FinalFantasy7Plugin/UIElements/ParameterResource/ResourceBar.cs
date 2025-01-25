@@ -6,10 +6,10 @@ using Dalamud.Interface.Internal;
 using Dalamud.Interface.Textures;
 using ImGuiNET;
 using ImGuiScene;
-using KingdomHeartsPlugin.Enums;
-using KingdomHeartsPlugin.Utilities;
+using FinalFantasy7Plugin.Enums;
+using FinalFantasy7Plugin.Utilities;
 
-namespace KingdomHeartsPlugin.UIElements.ParameterResource
+namespace FinalFantasy7Plugin.UIElements.ParameterResource
 {
     public class ResourceBar
     {

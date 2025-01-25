@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace KingdomHeartsPlugin.UIElements.LimitBreak
+namespace FinalFantasy7Plugin.UIElements.LimitBreak
 {
     public class Orb
     {

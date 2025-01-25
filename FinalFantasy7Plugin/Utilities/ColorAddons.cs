@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace KingdomHeartsPlugin.Utilities
+namespace FinalFantasy7Plugin.Utilities
 {
     class ColorAddons
     {

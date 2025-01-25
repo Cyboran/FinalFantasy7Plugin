@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KingdomHeartsPlugin.Enums
+namespace FinalFantasy7Plugin.Enums
 {
     public enum NumberFormatStyle
     {

@@ -2,11 +2,11 @@
 using Dalamud.Utility;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using ImGuiNET;
-using KingdomHeartsPlugin.Configuration;
-using KingdomHeartsPlugin.Enums;
-using KingdomHeartsPlugin.UIElements.Experience;
-using KingdomHeartsPlugin.UIElements.HealthBar;
-using KingdomHeartsPlugin.Utilities;
+using FinalFantasy7Plugin.Configuration;
+using FinalFantasy7Plugin.Enums;
+using FinalFantasy7Plugin.UIElements.Experience;
+using FinalFantasy7Plugin.UIElements.HealthBar;
+using FinalFantasy7Plugin.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +15,7 @@ using System.Numerics;
 using Dalamud.Interface.ImGuiFileDialog;
 using Dalamud.Interface.Utility;
 
-namespace KingdomHeartsPlugin
+namespace FinalFantasy7Plugin
 {
     // It is good to have this be disposable in general, in case you ever need it
     // to do any cleanup
@@ -54,7 +54,7 @@ namespace KingdomHeartsPlugin
             HealthFrame = new HealthFrame();
             _dialogManager = SetupDialogManager();
 
-            /*_testTextureWrap = KingdomHeartsPlugin.Pi.UiBuilder.LoadImage(Path.Combine(KingdomHeartsPlugin.TemplateLocation, @"Textures\LimitGauge\number_2.png"));
+            /*_testTextureWrap = FinalFantasy7Plugin.Pi.UiBuilder.LoadImage(Path.Combine(FinalFantasy7Plugin.TemplateLocation, @"Textures\LimitGauge\number_2.png"));
             pos = new float[4];
             pos2 = new float[4];
             uv = new float[4];

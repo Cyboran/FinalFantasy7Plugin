@@ -8,9 +8,9 @@ using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using ImGuiNET;
 using ImGuiScene;
-using KingdomHeartsPlugin.Utilities;
+using FinalFantasy7Plugin.Utilities;
 
-namespace KingdomHeartsPlugin.UIElements.LimitBreak
+namespace FinalFantasy7Plugin.UIElements.LimitBreak
 {
     public class LimitGauge
     {

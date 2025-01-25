@@ -4,12 +4,12 @@ using Dalamud.Plugin;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using KingdomHeartsPlugin.Configuration;
-using KingdomHeartsPlugin.UIElements.Experience;
+using FinalFantasy7Plugin.Configuration;
+using FinalFantasy7Plugin.UIElements.Experience;
 using Lumina.Excel.Sheets;
 using Dalamud.Plugin.Services;
 
-namespace KingdomHeartsPlugin
+namespace FinalFantasy7Plugin
 {
     public sealed class FinalFantasy7Plugin : IDalamudPlugin
     {

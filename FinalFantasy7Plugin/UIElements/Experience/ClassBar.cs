@@ -1,18 +1,18 @@
 ﻿using Dalamud.Game.ClientState.Objects.SubKinds;
 using ImGuiNET;
 using ImGuiScene;
-using KingdomHeartsPlugin.Utilities;
+using FinalFantasy7Plugin.Utilities;
 using System;
 using System.IO;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using KingdomHeartsPlugin.Enums;
+using FinalFantasy7Plugin.Enums;
 using Dalamud.Interface.Internal;
 using Dalamud.Interface.Textures;
 using FFXIVClientStructs.Attributes;
 using FFXIVClientStructs.FFXIV.Client.UI;
 
-namespace KingdomHeartsPlugin.Configuration
+namespace FinalFantasy7Plugin.Configuration
 {
     public partial class Defaults
     {
@@ -38,7 +38,7 @@ namespace KingdomHeartsPlugin.Configuration
     }
 }
 
-namespace KingdomHeartsPlugin.UIElements.Experience
+namespace FinalFantasy7Plugin.UIElements.Experience
 {
     public class ClassBar
     {
@@ -177,7 +177,7 @@ namespace KingdomHeartsPlugin.UIElements.Experience
                 
                 ImageDrawing.DrawIcon(drawList, (ushort)(62000 + FinalFantasy7Plugin.Cs.LocalPlayer.ClassJob.RowId),
                     new Vector2(iconSize, iconSize),
-                    //new Vector2((int)(size / 2f), (int)(size / 2f + 18 * KingdomHeartsPlugin.Ui.Configuration.Scale)) +
+                    //new Vector2((int)(size / 2f), (int)(size / 2f + 18 * FinalFantasy7Plugin.Ui.Configuration.Scale)) +
                     new Vector2((int)(FinalFantasy7Plugin.Ui.Configuration.ClassIconX), (int)(FinalFantasy7Plugin.Ui.Configuration.ClassIconY)) +
                     new Vector2(0, (int)(healthY * FinalFantasy7Plugin.Ui.Configuration.ClassIconScale * FinalFantasy7Plugin.Ui.Configuration.Scale)));
             }

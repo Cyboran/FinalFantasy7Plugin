@@ -5,9 +5,9 @@ using Dalamud.Interface.Internal;
 using Dalamud.Utility;
 using ImGuiNET;
 using ImGuiScene;
-using KingdomHeartsPlugin.Utilities;
+using FinalFantasy7Plugin.Utilities;
 
-namespace KingdomHeartsPlugin.Configuration
+namespace FinalFantasy7Plugin.Configuration
 {
     public partial class Defaults
     {
@@ -36,7 +36,7 @@ namespace KingdomHeartsPlugin.Configuration
     }
 }
 
-namespace KingdomHeartsPlugin.UIElements.Experience
+namespace FinalFantasy7Plugin.UIElements.Experience
 {
     public static class Portrait
     {
@@ -90,7 +90,7 @@ namespace KingdomHeartsPlugin.UIElements.Experience
             var portraitDangerAlpha = FinalFantasy7Plugin.Ui.Configuration.PortraitRedWhenDanger && dangerStatus ? 1 : 0;
             var inCombat = (FinalFantasy7Plugin.Cs.LocalPlayer.StatusFlags & StatusFlags.InCombat) == StatusFlags.InCombat;
 
-            //ImGuiAdditions.TextShadowedDrawList(drawList,24, $"{KingdomHeartsPlugin.Cs.LocalPlayer.StatusFlags}", ImGui.GetItemRectMin() + new Vector2(0,0), new Vector4(1, 1, 1, 1), new Vector4(0,0,0,1));
+            //ImGuiAdditions.TextShadowedDrawList(drawList,24, $"{FinalFantasy7Plugin.Cs.LocalPlayer.StatusFlags}", ImGui.GetItemRectMin() + new Vector2(0,0), new Vector4(1, 1, 1, 1), new Vector4(0,0,0,1));
 
             if (realDamagedAlpha > 0.595f && PortraitHurt != "")
             {

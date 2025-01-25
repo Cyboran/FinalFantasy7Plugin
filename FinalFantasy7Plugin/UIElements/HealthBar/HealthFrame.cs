@@ -3,16 +3,16 @@ using Dalamud.Interface.Internal;
 using Dalamud.Interface.Textures;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using ImGuiNET;
-using KingdomHeartsPlugin.Enums;
-using KingdomHeartsPlugin.UIElements.Experience;
-using KingdomHeartsPlugin.UIElements.LimitBreak;
-using KingdomHeartsPlugin.UIElements.ParameterResource;
-using KingdomHeartsPlugin.Utilities;
+using FinalFantasy7Plugin.Enums;
+using FinalFantasy7Plugin.UIElements.Experience;
+using FinalFantasy7Plugin.UIElements.LimitBreak;
+using FinalFantasy7Plugin.UIElements.ParameterResource;
+using FinalFantasy7Plugin.Utilities;
 using System;
 using System.IO;
 using System.Numerics;
 
-namespace KingdomHeartsPlugin.UIElements.HealthBar
+namespace FinalFantasy7Plugin.UIElements.HealthBar
 {
     public class HealthFrame : IDisposable
     {
@@ -82,11 +82,11 @@ namespace KingdomHeartsPlugin.UIElements.HealthBar
             {
                 // Draw HP Value
                 var basePosition = ImGui.GetItemRectMin() + new Vector2(FinalFantasy7Plugin.Ui.Configuration.HpValueTextPositionX, FinalFantasy7Plugin.Ui.Configuration.HpValueTextPositionY) * FinalFantasy7Plugin.Ui.Configuration.Scale;
-                /*float hp = KingdomHeartsPlugin.Ui.Configuration.TruncateHp && player.CurrentHp >= 10000
+                /*float hp = FinalFantasy7Plugin.Ui.Configuration.TruncateHp && player.CurrentHp >= 10000
                     ? player.CurrentHp / 1000f
                     : player.CurrentHp;
 
-                string hpVal = KingdomHeartsPlugin.Ui.Configuration.TruncateHp && player.CurrentHp >= 10000
+                string hpVal = FinalFantasy7Plugin.Ui.Configuration.TruncateHp && player.CurrentHp >= 10000
                     ? player.CurrentHp >= 100000 ? $"{hp:0}K" : $"{hp:0.#}K" : $"{hp}";*/
 
                 ImGuiAdditions.TextShadowedDrawList(drawList,

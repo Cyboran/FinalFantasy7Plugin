@@ -5,9 +5,9 @@ using Dalamud.Interface.Internal;
 using Dalamud.Interface.Textures;
 using ImGuiNET;
 using ImGuiScene;
-using KingdomHeartsPlugin.Utilities;
+using FinalFantasy7Plugin.Utilities;
 
-namespace KingdomHeartsPlugin.UIElements
+namespace FinalFantasy7Plugin.UIElements
 {
     internal class Ring : IDisposable
     {

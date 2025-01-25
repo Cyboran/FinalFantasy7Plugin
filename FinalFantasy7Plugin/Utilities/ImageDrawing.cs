@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
 
-namespace KingdomHeartsPlugin.Utilities
+namespace FinalFantasy7Plugin.Utilities
 {
     internal static class ImageDrawing
     {

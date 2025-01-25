@@ -1,8 +1,8 @@
 ﻿using System.Numerics;
 using ImGuiNET;
-using KingdomHeartsPlugin.Enums;
+using FinalFantasy7Plugin.Enums;
 
-namespace KingdomHeartsPlugin.Utilities
+namespace FinalFantasy7Plugin.Utilities
 {
     public static class ImGuiAdditions
     {

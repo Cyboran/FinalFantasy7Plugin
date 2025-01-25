@@ -1,6 +1,6 @@
-﻿using KingdomHeartsPlugin.Enums;
+﻿using FinalFantasy7Plugin.Enums;
 
-namespace KingdomHeartsPlugin.Configuration
+namespace FinalFantasy7Plugin.Configuration
 {
     public static partial class Defaults
     {

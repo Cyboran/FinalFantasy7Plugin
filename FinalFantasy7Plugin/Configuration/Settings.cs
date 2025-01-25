@@ -1,9 +1,9 @@
 ﻿using System;
 using Dalamud.Configuration;
 using Dalamud.Plugin;
-using KingdomHeartsPlugin.Enums;
+using FinalFantasy7Plugin.Enums;
 
-namespace KingdomHeartsPlugin.Configuration
+namespace FinalFantasy7Plugin.Configuration
 {
     [Serializable]
     public partial class Settings : IPluginConfiguration

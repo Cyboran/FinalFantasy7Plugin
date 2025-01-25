@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KingdomHeartsPlugin.Enums;
+using FinalFantasy7Plugin.Enums;
 
-namespace KingdomHeartsPlugin.Utilities
+namespace FinalFantasy7Plugin.Utilities
 {
     public static class StringFormatting
     {
